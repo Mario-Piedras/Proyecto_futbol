@@ -1,0 +1,7 @@
+CREATE DATABASE IF NOT EXISTS Futbol_equipos;
+USE Futbol_equipos;
+
+CREATE TABLE IF NOT EXISTS Equipos (
+    id_equipo INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+);

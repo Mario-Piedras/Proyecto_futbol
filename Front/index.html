@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Básico 01</title>
+</head>
+<body>
+    <nav>
+        <h1>Bienvenidos al mundial de fútbol</h1>
+        <p>Aquí encontrarás el nombre de algunos equipos clasificados al mundial</p>
+    </nav>
+
+    <h2>Equipos de Fútbol clasificados</h2>
+
+    <!--Formulario para crear o editar equipos-->
+    <form id="dataform">
+        <input type="hidden" id="id_equipo">
+
+        <!--Input de diligenciamiento-->
+        <div>
+            <label for="nombre">Nombre del equipo</label>
+            <input type="text" id="nombre" required>
+        </div>
+
+        <!--Bontones-->
+        <button type="submit" id="btnguardar">Guardar</button>
+        <button type="button" id="btncancelar">Cancelar</button>
+    </form>
+
+    <!--Contenedor tipo plantilla para renderizar los equipos-->
+    <div id="contenedor_cards" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;"></div>
+
+    <!--Plantilla de renderizado-->
+    <template id="template_card">
+        <div class="card_equipos" style="border: 1px solid #ccc; padding: 16px; border-radius: 8px; width: 250px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center;">
+            <h3 class="nombre_equipos"></h3>
+            <div style="margin-top: 10px;">
+                <button class="btneditar">Editar</button>
+                <button class="btneliminar">Borrar</button>
+            </div>
+        </div>
+    </template>
+
+    <!--Se invoca el archivo JavaScript al final del codigo-->
+    <script src="/Front/index.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const API_URL = 'https://localhost:3000/api/equipos';
+const API_URL = 'http://localhost:3000/api/equipos';
 
 async function obtenerEquipos() {
     const res = await fetch(API_URL);
@@ -37,7 +37,7 @@ async function eliminarEquipo(id) {
 
 //Referencias a los elementos del DOM
 const contenedor_cards = document.getElementById('contenedor_cards');
-const template_card = document.getElementById('template_card').content;
+const template_card = document.getElementById('template_card');
 const dataform = document.getElementById('dataform');
 const nombre = document.getElementById('nombre');
 const btncancelar = document.getElementById('btncancelar');
@@ -46,10 +46,10 @@ const btncancelar = document.getElementById('btncancelar');
 async function mostrarEquipos() {
     contenedor_cards.innerHTML = '';
     const equipos = await obtenerEquipos();
-    equipos.array.forEach(equipo => {
+    equipos.forEach(equipo => {
         const clone = template_card.content.cloneNode(true);
         clone.querySelector('.nombre_equipos').textContent = equipo.nombre_equipo;
-        clone.querySelector('.btneditar').onclick = () => cargarEquipoParaEditar(equipo._id);
+        clone.querySelector('.btneditar').onclick = () => cargarEquipoParaEditar(equipo);
         clone.querySelector('.btneliminar').onclick = () => eliminarEquipoHandler(equipo.id_equipo);
         contenedor_cards.appendChild(clone);
     });
@@ -75,6 +75,14 @@ dataform.onsubmit = async (e) => {
 btncancelar.onclick = () => {
     dataform.reset();
     id_equipo.value = '';
+}
+
+//Cargar equipo para editar
+//inputIdEquipo = document.getElementById('id_equipo');
+//inputNombre = document.getElementById('nombre');
+function cargarEquipoParaEditar(equipo) {
+    id_equipo.value = equipo.id_equipo;
+    nombre.value = equipo.nombre_equipo;
 }
 
 //Eliminar equipo
